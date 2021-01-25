@@ -1,0 +1,55 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.entando.nshaw",
+      "nativeLanguage": "en"
+    },
+    "bundleName": "conference-bundle",
+    "dockerOrganization": "nathanshaw",
+    "generateMicroFrontends": "always",
+    "jhipsterVersion": "6.9.0",
+    "applicationType": "microservice",
+    "baseName": "conference",
+    "packageName": "com.entando.nshaw",
+    "packageFolder": "com/entando/nshaw",
+    "serverPort": "8081",
+    "authenticationType": "oauth2",
+    "cacheProvider": "caffeine",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NTgyZWI2MWI3MTI5YjYyNTNjYTdkZDMyOGY5ODRkNWNlNjJlNTBhMDM1MzQ2MTljMWQ2ODM1ZjAzZDA5MmFkYzA3OGZlMzU3MjljZDYwMTA1MGRhYWQzMjNkMTVjM2VlYzZiZmUwMTk5N2MyYTUyYmZkNzk2MTY4MzNhZDA5MzY=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1611606074778,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "skipCheckLengthOfIdentifier": false,
+    "otherModules": [
+      {
+        "name": "generator-jhipster-entando",
+        "version": "6.3.0"
+      }
+    ],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": ["en"],
+    "blueprints": [
+      {
+        "name": "generator-jhipster-entando",
+        "version": "6.3.0"
+      }
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
