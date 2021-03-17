@@ -43,9 +43,9 @@
       },
       "noItems": "No conferences available",
       "id": "ID",
-      "name": "entities.conference.name",
-      "location": "entities.conference.location",
-      "date": "entities.conference.date"
+      "name": "Conference",
+      "location": "Location",
+      "date": "Date"
     }
   }
 }

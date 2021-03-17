@@ -42,9 +42,9 @@
       },
       "noItems": "Nessun conferences disponibile",
       "id": "ID",
-      "name": "entità.conference.name",
-      "location": "entità.conference.location",
-      "date": "entità.conference.date"
+      "name": "Conferenza",
+      "location": "Posizione",
+      "date": "Data"
     }
   }
 }

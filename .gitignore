@@ -152,4 +152,4 @@ Desktop.ini
 /bundle/
 # !/bundle/descriptor.yaml
 
-.ent-state
+/.ent/ent-state
