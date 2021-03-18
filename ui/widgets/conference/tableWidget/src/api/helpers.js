@@ -40,3 +40,20 @@ export const request = async (url, options) => {
     ? { conferences: await response.json(), headers }
     : Promise.reject(new Error(response.statusText || response.status));
 };
+
+//Check if the authenticated user has the clientRole for any keycloak clients
+export const hasKeycloakClientRole = clientRole => {
+  if (getKeycloakToken()) {
+    const { resourceAccess } = window.entando.keycloak;
+    if (resourceAccess) {
+      for (const client in resourceAccess) {
+        // eslint-disable-line no-unused-vars
+        const roles = resourceAccess[client].roles;
+        if (roles && roles.includes(clientRole)) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+};

@@ -18,6 +18,7 @@ import FiltersContainer from 'components/filters/FiltersContainer';
 import ConferenceTable from 'components/ConferenceTable';
 import Notification from 'components/common/Notification';
 import { apiConferencesGet, apiConferencesDelete } from 'api/conferences';
+import { hasKeycloakClientRole } from 'api/helpers';
 import { reducer, initialState } from 'state/conference.reducer';
 import { ADD_FILTER, UPDATE_FILTER, DELETE_FILTER, CLEAR_FILTERS } from 'state/filter.types';
 import { DELETE, ERROR_FETCH, CLEAR_ERRORS, READ_ALL, CLEAR_ITEMS } from 'state/conference.types';
@@ -184,13 +185,11 @@ class ConferenceTableContainer extends Component {
     const { classes, onSelect, onAdd, onDelete, t, keycloak, paginationMode = '' } = this.props;
     const deleteLabel = t('common.delete');
 
-    let canDelete = false;
-    if (onDelete && keycloak && keycloak.hasResourceRole) {
-      canDelete = keycloak.hasResourceRole('conference-admin', 'internal');
-    }
+    const adminAccess = hasKeycloakClientRole('conference-admin');
+    const showDelete = onDelete && adminAccess;
 
     const Actions = ({ item }) =>
-      canDelete ? (
+      showDelete ? (
         <ConfirmationDialogTrigger
           onCloseDialog={action => this.handleConfirmationDialogAction(action, item)}
           dialog={{
