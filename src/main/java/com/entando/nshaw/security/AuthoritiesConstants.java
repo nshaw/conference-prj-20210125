@@ -5,11 +5,11 @@ package com.entando.nshaw.security;
  */
 public final class AuthoritiesConstants {
 
-    public static final String ADMIN = "ROLE_ADMIN";
+    public static final String ADMIN = "ADMIN";
 
-    public static final String USER = "ROLE_USER";
+    public static final String CONFERENCE_ADMIN = "conference-admin";
 
-    public static final String ANONYMOUS = "ROLE_ANONYMOUS";
+    public static final String CONFERENCE_USER = "conference-user";
 
     private AuthoritiesConstants() {
     }

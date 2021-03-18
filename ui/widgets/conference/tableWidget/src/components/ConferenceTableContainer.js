@@ -184,8 +184,13 @@ class ConferenceTableContainer extends Component {
     const { classes, onSelect, onAdd, onDelete, t, keycloak, paginationMode = '' } = this.props;
     const deleteLabel = t('common.delete');
 
+    let canDelete = false;
+    if (onDelete && keycloak && keycloak.hasResourceRole) {
+      canDelete = keycloak.hasResourceRole('conference-admin', 'internal');
+    }
+
     const Actions = ({ item }) =>
-      onDelete ? (
+      canDelete ? (
         <ConfirmationDialogTrigger
           onCloseDialog={action => this.handleConfirmationDialogAction(action, item)}
           dialog={{

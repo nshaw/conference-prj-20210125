@@ -2,20 +2,27 @@ package com.entando.nshaw.web.rest;
 
 import com.entando.nshaw.domain.Conference;
 import com.entando.nshaw.repository.ConferenceRepository;
+import com.entando.nshaw.security.AuthoritiesConstants;
+import com.entando.nshaw.security.SpringSecurityAuditorAware;
 import com.entando.nshaw.web.rest.errors.BadRequestAlertException;
-
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -38,6 +45,10 @@ public class ConferenceResource {
     public ConferenceResource(ConferenceRepository conferenceRepository) {
         this.conferenceRepository = conferenceRepository;
     }
+
+    @Autowired
+    private SpringSecurityAuditorAware springSecurityAuditorAware;
+
 
     /**
      * {@code POST  /conferences} : Create a new conference.
@@ -85,10 +96,11 @@ public class ConferenceResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of conferences in body.
      */
     @GetMapping("/conferences")
+    @PreAuthorize("hasAnyAuthority('" + AuthoritiesConstants.CONFERENCE_USER + "','" +
+        AuthoritiesConstants.CONFERENCE_ADMIN + "')")
     public List<Conference> getAllConferences() {
         log.debug("REST request to get all Conferences");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        log.debug("REST request to get all Conferences for {}",authentication);
+        log.info("REST request to get all Conferences by {}",springSecurityAuditorAware.getCurrentUserLogin());
 
         return conferenceRepository.findAll();
     }
@@ -113,6 +125,8 @@ public class ConferenceResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/conferences/{id}")
+    //Limit deletes to just users with the admin role
+    @PreAuthorize("hasAuthority('" + AuthoritiesConstants.CONFERENCE_ADMIN + "')")
     public ResponseEntity<Void> deleteConference(@PathVariable Long id) {
         log.debug("REST request to delete Conference : {}", id);
 
