@@ -96,8 +96,7 @@ public class ConferenceResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of conferences in body.
      */
     @GetMapping("/conferences")
-    @PreAuthorize("hasAnyAuthority('" + AuthoritiesConstants.CONFERENCE_USER + "','" +
-        AuthoritiesConstants.CONFERENCE_ADMIN + "')")
+    @PreAuthorize("hasAnyAuthority('conference-user','conference-admin')")
     public List<Conference> getAllConferences() {
         log.debug("REST request to get all Conferences");
         log.info("REST request to get all Conferences by {}",springSecurityAuditorAware.getCurrentUserLogin());
@@ -126,7 +125,7 @@ public class ConferenceResource {
      */
     @DeleteMapping("/conferences/{id}")
     //Limit deletes to just users with the admin role
-    @PreAuthorize("hasAuthority('" + AuthoritiesConstants.CONFERENCE_ADMIN + "')")
+    @PreAuthorize("hasAuthority('conference-admin')")
     public ResponseEntity<Void> deleteConference(@PathVariable Long id) {
         log.debug("REST request to delete Conference : {}", id);
 

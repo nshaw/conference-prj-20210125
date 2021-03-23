@@ -387,7 +387,7 @@
                   <artifactId>scala-library</artifactId>
               </exclusion>
           </exclusions>
-          
+
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
@@ -484,10 +484,10 @@
                 <configuration>
                     <mainClass>${start-class}</mainClass>
                     <fork>true</fork>
-                    <!--
+                    <!-- -->
                     Enable the line below to have remote debugging of your application on port 5005
                     <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
-                    -->
+                    <!-- -->
                 </configuration>
             </plugin>
             <plugin>
